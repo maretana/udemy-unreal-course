@@ -3,34 +3,34 @@
 
 using namespace std;
 
-void printIntro();
-void playGame();
-string getGuess();
-void printGuess(string &);
-bool askToPlayAgain();
+void PrintIntro();
+void PlayGame();
+string GetGuess();
+void PrintGuess(const string &);
+bool AskToPlayAgain();
 
 int main()
 {
-	printIntro();
-	playGame();
-	askToPlayAgain();
+	PrintIntro();
+	PlayGame();
+	AskToPlayAgain();
 	return EXIT_SUCCESS;
 }
 
 // loop for the number of turns asking for guesses.
-void playGame()
+void PlayGame()
 {
 	constexpr int NUMBER_OF_TURNS = 5;
-	string guess;
+	string Guess;
 
 	for (int i = 0; i < NUMBER_OF_TURNS; i++) {
-		guess = getGuess();
-		printGuess(guess);
+		Guess = GetGuess();
+		PrintGuess(Guess);
 	}
 }
 
 // introduce the game
-void printIntro()
+void PrintIntro()
 {
 	constexpr int WORD_LENGTH = 9;
 	cout << "Welcome to Bulls and Cows, a fun word game.\n";
@@ -41,25 +41,25 @@ void printIntro()
 }
 
 // get a guess from the player
-string getGuess()
+string GetGuess()
 {
-	string guess;
+	string Guess;
 	cout << "Make a guess: ";
-	getline(cin, guess);
-	return guess;
+	getline(cin, Guess);
+	return Guess;
 }
 
 // repeat the guess back to the player
-void printGuess(string &guess)
+void PrintGuess(const string &Guess)
 {
-	cout << "You guessed: " << guess << endl;
+	cout << "You guessed: " << Guess << endl;
 	cout << endl;
 }
 
-bool askToPlayAgain()
+bool AskToPlayAgain()
 {
-	string response;
+	string Response;
 	cout << "Do you want to play again? ";
-	getline(cin, response);
-	return response[0] == 'y' || response[0] == 'Y';
+	getline(cin, Response);
+	return Response[0] == 'y' || Response[0] == 'Y';
 }
