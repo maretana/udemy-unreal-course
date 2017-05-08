@@ -4,26 +4,32 @@
 using namespace std;
 
 void printIntro();
+void playGame();
 string getGuess();
-void printGuess(string);
+void printGuess(string &);
 
 int main()
 {
-	constexpr int MAX_TRIES = 5;
-	string guess;
-
 	printIntro();
-
-	for (int i = 0; i < MAX_TRIES; i++) {
-		guess = getGuess();
-		printGuess(guess);
-	}
-
+	playGame();
 	return EXIT_SUCCESS;
 }
 
+// loop for the number of turns asking for guesses.
+void playGame()
+{
+	constexpr int NUMBER_OF_TURNS = 5;
+	string guess;
+
+	for (int i = 0; i < NUMBER_OF_TURNS; i++) {
+		guess = getGuess();
+		printGuess(guess);
+	}
+}
+
 // introduce the game
-void printIntro() {
+void printIntro()
+{
 	constexpr int WORD_LENGTH = 9;
 	cout << "Welcome to Bulls and Cows, a fun word game.\n";
 	cout << "Can you guess the " << WORD_LENGTH;
@@ -33,7 +39,8 @@ void printIntro() {
 }
 
 // get a guess from the player
-string getGuess() {
+string getGuess()
+{
 	string guess;
 	cout << "Make a guess: ";
 	getline(cin, guess);
@@ -41,7 +48,7 @@ string getGuess() {
 }
 
 // repeat the guess back to the player
-void printGuess(string guess) {
+void printGuess(string &guess) {
 	cout << "You guessed: " << guess << endl;
 	cout << endl;
 }
