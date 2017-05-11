@@ -11,9 +11,14 @@ bool AskToPlayAgain();
 
 int main()
 {
-	PrintIntro();
-	PlayGame();
-	AskToPlayAgain();
+	bool bPlayAgain = false;
+	do
+	{
+		PrintIntro();
+		PlayGame();
+		bPlayAgain = AskToPlayAgain();
+	}
+	while(bPlayAgain);
 	return EXIT_SUCCESS;
 }
 
