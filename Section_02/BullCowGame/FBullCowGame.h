@@ -3,9 +3,11 @@
 
 class FBullCowGame {
 public:
+	FBullCowGame();
+
 	void Reset();
-	int GetMaxTries();
-	int GetCurrentTry();
+	int GetMaxTries() const;
+	int GetCurrentTry() const;
 	bool IsGameWon();
 	bool CheckGuessValidity(std::string);
 
