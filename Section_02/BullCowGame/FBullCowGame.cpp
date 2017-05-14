@@ -6,12 +6,12 @@ void FBullCowGame::Reset()
 
 int FBullCowGame::GetMaxTries()
 {
-	return 0;
+	return MyMaxTries;
 }
 
 int FBullCowGame::GetCurrentTry()
 {
-	return 0;
+	return MyCurrentTry;
 }
 
 bool FBullCowGame::IsGameWon()
