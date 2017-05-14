@@ -48,7 +48,7 @@ std::string GetGuess()
 {
 	std::string Guess;
 	std::cout << "Make a guess: ";
-	std::getline(std::cin, Guess);
+	std::getline(cin, Guess);
 	return Guess;
 }
 
@@ -63,6 +63,6 @@ bool AskToPlayAgain()
 {
 	std::string Response;
 	std::cout << "Do you want to play again? ";
-	std::getline(std::cin, Response);
+	std::getline(cin, Response);
 	return Response[0] == 'y' || Response[0] == 'Y';
 }
