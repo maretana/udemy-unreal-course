@@ -1,11 +1,19 @@
+/* This is the console executable, that makes use of the BullCow class
+ This acts as the view in a MVC pattern, and is responsible for all
+ user interaction. For game logic see the FBullCowGame class.
+ */
+
 #include <iostream>
 #include <string>
 #include "FBullCowGame.h"
 
+using FText = std::string;
+using int32 = int;
+
 void PrintIntro();
 void PlayGame();
-std::string GetGuess();
-void PrintGuess(const std::string &);
+FText GetGuess();
+void PrintGuess(const FText &);
 bool AskToPlayAgain();
 
 FBullCowGame BCGame; //instantiate a new game
@@ -27,10 +35,10 @@ int main()
 void PlayGame()
 {
 	BCGame.Reset();
-	int MaxTries = BCGame.GetMaxTries();
-	std::string Guess;
+	int32 MaxTries = BCGame.GetMaxTries();
+	FText Guess;
 
-	for (int i = 0; i < MaxTries; i++) {
+	for (int32 i = 0; i < MaxTries; i++) {
 		Guess = GetGuess();
 		PrintGuess(Guess);
 	}
@@ -39,7 +47,7 @@ void PlayGame()
 // introduce the game
 void PrintIntro()
 {
-	constexpr int WORD_LENGTH = 9;
+	constexpr int32 WORD_LENGTH = 9;
 	std::cout << "Welcome to Bulls and Cows, a fun word game.\n";
 	std::cout << "Can you guess the " << WORD_LENGTH;
 	std::cout << " letter isogram I'm thinking of?\n";
@@ -48,10 +56,10 @@ void PrintIntro()
 }
 
 // get a guess from the player
-std::string GetGuess()
+FText GetGuess()
 {
-	int CurrentTry = BCGame.GetCurrentTry();
-	std::string Guess;
+	int32 CurrentTry = BCGame.GetCurrentTry();
+	FText Guess;
 	std::cout << "Try " << CurrentTry;
 	std::cout << ". Enter your guess: ";
 	std::getline(std::cin, Guess);
@@ -59,7 +67,7 @@ std::string GetGuess()
 }
 
 // repeat the guess back to the player
-void PrintGuess(const std::string &Guess)
+void PrintGuess(const FText &Guess)
 {
 	std::cout << "You guessed: " << Guess << std::endl;
 	std::cout << std::endl;
@@ -67,7 +75,7 @@ void PrintGuess(const std::string &Guess)
 
 bool AskToPlayAgain()
 {
-	std::string Response;
+	FText Response;
 	std::cout << "Do you want to play again? ";
 	std::getline(std::cin, Response);
 	return Response[0] == 'y' || Response[0] == 'Y';
