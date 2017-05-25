@@ -66,10 +66,12 @@ FText GetGuess()
 	return Guess;
 }
 
-// repeat the guess back to the player
+// Submits user's guess and prints back results.
 void PrintGuess(const FText &Guess)
 {
-	std::cout << "You guessed: " << Guess << std::endl;
+    FBullCowCount BullCowCount = BCGame.SubmitGuess(Guess);
+    std::cout << "Bulls = " << BullCowCount.Bulls;
+    std::cout << ". Cows = " << BullCowCount.Cows << std::endl;
 	std::cout << std::endl;
 }
 
