@@ -14,12 +14,15 @@ class FBullCowGame {
 public:
 	FBullCowGame();
 
-	void Reset();
 	int32 GetMaxTries() const;
 	int32 GetCurrentTry() const;
-	bool IsGameWon();
-	bool CheckGuessValidity(FString);
-    FBullCowCount  SubmitGuess(FString);
+	int32 GetHiddenWordLength() const;
+	
+	bool IsGameWon() const;
+	bool CheckGuessValidity(FString) const;
+    
+	void Reset();
+	FBullCowCount  SubmitGuess(FString);
 
 private:
 	int32 MyCurrentTry;

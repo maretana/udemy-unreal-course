@@ -1,13 +1,10 @@
 #include "FBullCowGame.h"
 
+FBullCowGame::FBullCowGame() { Reset(); }
+
 int32 FBullCowGame::GetMaxTries() const { return MyMaxTries; }
-
 int32 FBullCowGame::GetCurrentTry() const { return MyCurrentTry; }
-
-FBullCowGame::FBullCowGame()
-{
-	Reset();
-}
+int32 FBullCowGame::GetHiddenWordLength() const { return MyHiddenWord.length(); }
 
 void FBullCowGame::Reset()
 {
@@ -21,12 +18,12 @@ void FBullCowGame::Reset()
 	return;
 }
 
-bool FBullCowGame::IsGameWon()
+bool FBullCowGame::IsGameWon() const
 {
 	return false;
 }
 
-bool FBullCowGame::CheckGuessValidity(FString)
+bool FBullCowGame::CheckGuessValidity(FString) const
 {
 	return false;
 }
