@@ -23,7 +23,7 @@ bool FBullCowGame::IsGameWon() const
 	return false;
 }
 
-EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
+EGuessStatus FBullCowGame::CheckGuessValidity(const FString &Guess) const
 {
 	if (false) // the guess isn't an isogram
 	{
@@ -44,21 +44,18 @@ EGuessStatus FBullCowGame::CheckGuessValidity(FString Guess) const
 }
 
 // receives a VALID guess, increments turn, and returns count.
-FBullCowCount FBullCowGame::SubmitGuess(FString Guess)
+FBullCowCount FBullCowGame::SubmitValidGuess(const FString &Guess)
 {
-    // increment the turn number
     MyCurrentTry++;
-    
-    //setup a return variable
     FBullCowCount BullCowCount;
 	
-	// loop through all letters in the guess
+	// loop through all letters in the hidden word
 	int32 HiddenWordLength = (int32) MyHiddenWord.length();
 	int32 GuessLength = (int32) Guess.length();
 
 	for (int32 MHWChar = 0; MHWChar < HiddenWordLength; MHWChar++)
 	{
-		// compare letters againsts the hidden word.
+		// compare letters againsts the guess.
 		for (int32 GChar = 0; GChar < GuessLength; GChar++)
 		{
 			if (MyHiddenWord[MHWChar] == Guess[GChar])

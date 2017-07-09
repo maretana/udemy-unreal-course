@@ -41,7 +41,7 @@ void PlayGame()
 
 	for (int32 i = 0; i < MaxTries; i++) {
 		Guess = GetValidGuess();
-		BullCowCount = BCGame.SubmitGuess(Guess);
+		BullCowCount = BCGame.SubmitValidGuess(Guess);
 		PrintGuessResult(BullCowCount);
 	}
 }
