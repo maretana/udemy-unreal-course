@@ -11,6 +11,7 @@ using FText = std::string;
 using int32 = int;
 
 void PrintIntro();
+void PrintGameSummary();
 void PlayGame();
 FText GetValidGuess();
 void PrintGuessResult(const FBullCowCount &);
@@ -25,6 +26,7 @@ int main()
 	{
 		PrintIntro();
 		PlayGame();
+		PrintGameSummary();
 		bPlayAgain = AskToPlayAgain();
 	}
 	while(bPlayAgain);
@@ -56,6 +58,19 @@ void PrintIntro()
 	std::cout << " letter isogram I'm thinking of?\n";
 	std::cout << std::endl;
 	return;
+}
+
+void PrintGameSummary()
+{
+	if (BCGame.IsGameWon())
+	{
+		std::cout << "Congratulations! You guessed it!";
+	}
+	else
+	{
+		std::cout << "Bad luck, you are out of tries :(";
+	}
+	std::cout << std::endl;
 }
 
 // get a guess from the player
@@ -101,7 +116,7 @@ void PrintGuessResult(const FBullCowCount &BullCowCount)
 bool AskToPlayAgain()
 {
 	FText Response;
-	std::cout << "Do you want to play again? ";
+	std::cout << "Do you want to play again with the same hidden word? (y/n): ";
 	std::getline(std::cin, Response);
 	return Response[0] == 'y' || Response[0] == 'Y';
 }
