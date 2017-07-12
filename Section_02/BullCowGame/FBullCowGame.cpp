@@ -77,10 +77,14 @@ FBullCowCount FBullCowGame::SubmitValidGuess(const FString &Guess)
 
 bool FBullCowGame::IsIsogram(const FString &Guess) const
 {
-	// Instantiate a new TMap<char, bool>
-	// For every word in Guess
-		// If char has value true in the TMap, return false
-		// Else add the char to the map with value = true;
-	// It looped through all letters and didn't return false, so return true.
+	if (Guess.length() <= 1) return true;
+
+	TMap<char, bool> LetterSeen;
+	for (auto Letter : Guess)
+	{
+		Letter = tolower(Letter);
+		if (LetterSeen[Letter]) return false;
+		LetterSeen[Letter] = true;
+	}
 	return true;
 }
