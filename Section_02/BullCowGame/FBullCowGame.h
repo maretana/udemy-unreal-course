@@ -38,4 +38,5 @@ private:
     FString MyHiddenWord;
 
 	bool IsIsogram(const FString &) const;
+	bool IsLowercase(const FString &) const;
 };

@@ -27,7 +27,7 @@ EGuessStatus FBullCowGame::CheckGuessValidity(const FString &Guess) const
 	{
 		return EGuessStatus::Not_Isogram;
 	}
-	else if (false)
+	else if (!IsLowercase(Guess))
 	{
 		return EGuessStatus::Not_Lowercase;
 	}
@@ -85,6 +85,15 @@ bool FBullCowGame::IsIsogram(const FString &Guess) const
 		Letter = tolower(Letter);
 		if (LetterSeen[Letter]) return false;
 		LetterSeen[Letter] = true;
+	}
+	return true;
+}
+
+bool FBullCowGame::IsLowercase(const FString &Guess) const
+{
+	for (auto Letter : Guess)
+	{
+		if (!islower(Letter)) return false;
 	}
 	return true;
 }
