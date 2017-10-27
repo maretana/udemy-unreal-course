@@ -1,8 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-#include "BuildingEscape.h"
 #include "PositionReport.h"
-//#include "GameFramework/Actor.h" // Required for UE 4.16 and above
+#include "BuildingEscape.h"
+#include "GameFramework/Actor.h"
 
 // Sets default values for this component's properties
 UPositionReport::UPositionReport()
