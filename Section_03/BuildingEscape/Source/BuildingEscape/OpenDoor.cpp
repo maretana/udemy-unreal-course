@@ -32,7 +32,7 @@ void UOpenDoor::OpenDoor()
 	FRotator Rotator = Owner->GetActorRotation();
 
 	// Add OpenAngle rotation
-	Rotator.Add(0.f, OpenAngle, 0.f);
+	Rotator.Yaw += OpenAngle;
 
 	// Set the door rotation
 	Owner->SetActorRotation(Rotator);
