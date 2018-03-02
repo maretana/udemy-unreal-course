@@ -21,6 +21,7 @@ void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
 	ActorThatOpens = GetWorld()->GetFirstPlayerController()->GetPawn();
+	OpenAngle += GetOwner()->GetActorRotation().Yaw;
 }
 
 void UOpenDoor::OpenDoor()
@@ -28,11 +29,8 @@ void UOpenDoor::OpenDoor()
 	// Find the owning actor
 	AActor* Owner = GetOwner();
 
-	// Get current rotation
-	FRotator Rotator = Owner->GetActorRotation();
-
 	// Add OpenAngle rotation
-	Rotator.Yaw += OpenAngle;
+	FRotator Rotator = FRotator(0.f, OpenAngle, 0.f);
 
 	// Set the door rotation
 	Owner->SetActorRotation(Rotator);
