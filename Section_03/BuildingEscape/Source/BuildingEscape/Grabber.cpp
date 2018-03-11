@@ -5,6 +5,7 @@
 #include "GameFramework/PlayerController.h"
 #include "Engine/World.h"
 
+#define OUT
 
 // Sets default values for this component's properties
 UGrabber::UGrabber()
@@ -35,7 +36,7 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 
 	FVector Location;
 	FRotator Rotation;
-	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(Location, Rotation);
+	GetWorld()->GetFirstPlayerController()->GetPlayerViewPoint(OUT Location,  OUT Rotation);
 	UE_LOG(LogTemp, Warning, TEXT("Location: %s, Rotation: %s"), *Location.ToString(), *Rotation.ToString());
 }
 
