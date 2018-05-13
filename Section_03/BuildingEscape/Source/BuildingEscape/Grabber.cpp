@@ -26,6 +26,16 @@ void UGrabber::BeginPlay()
 
 	FString ObjectName = GetOwner()->GetName();
 	UE_LOG(LogTemp, Warning, TEXT("%s's Grabber reporting for duty, sir!"), *ObjectName);
+
+	/// Look for attached Physics Handle
+	PhysicsHandle = GetOwner()->FindComponentByClass<UPhysicsHandleComponent>();
+
+	if (PhysicsHandle) {
+		/// handle found
+	}
+	else {
+		UE_LOG(LogTemp, Error, TEXT("%s does not have a Physics Handle attached."), *ObjectName);
+	}
 	
 }
 
