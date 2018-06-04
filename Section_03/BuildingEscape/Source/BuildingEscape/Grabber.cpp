@@ -41,6 +41,7 @@ void UGrabber::BeginPlay()
 	if (Input) {
 		/// Bind the input action
 		Input->BindAction("Grab", EInputEvent::IE_Pressed, this, &UGrabber::Grab);
+		Input->BindAction("Grab", EInputEvent::IE_Released, this, &UGrabber::Release);
 	}
 	else {
 		UE_LOG(LogTemp, Error, TEXT("%s does not have a Input Component attached."), *ObjectName);
@@ -95,4 +96,8 @@ void UGrabber::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompone
 
 void UGrabber::Grab() {
 	UE_LOG(LogTemp, Warning, TEXT("Grab action triggered."));
+}
+
+void UGrabber::Release() {
+	UE_LOG(LogTemp, Warning, TEXT("Release action triggered."));
 }
