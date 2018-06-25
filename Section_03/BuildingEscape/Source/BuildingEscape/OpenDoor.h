@@ -42,8 +42,8 @@ private:
 
 	float CloseAngle;
 
-	AActor* ActorThatOpens;
-
 	float LastDoorOpenTime;
+
+	float GetTotalMassOfActorsOnPLate() const;
 	
 };
