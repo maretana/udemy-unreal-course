@@ -3,6 +3,7 @@
 #include "OpenDoor.h"
 #include "GameFramework/Actor.h"
 #include "Engine/World.h"
+#include "Components/PrimitiveComponent.h"
 
 // Flag to mark OUT parameters.
 #define OUT
@@ -45,7 +46,7 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// Poll the Trigger Volume
-	if (GetTotalMassOfActorsOnPLate() > 50.f)
+	if (GetTotalMassOfActorsOnPLate() > 10.f)
 	{
 		OpenDoor();
 	}
@@ -64,6 +65,16 @@ float UOpenDoor::GetTotalMassOfActorsOnPLate() const
 	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
 
 	///Iterate through them adding their masses.
+	for (const auto* OverlappingActor : OverlappingActors)
+	{
+		UE_LOG(LogTemp, Warning, TEXT("%s is overlapping"), *OverlappingActor->GetName());
+		auto PrimitiveComponent = OverlappingActor->FindComponentByClass<UPrimitiveComponent>();
+		if (PrimitiveComponent) {
+			TotalMass += PrimitiveComponent->GetMass();
+		}
+	}
+
+	UE_LOG(LogTemp, Warning, TEXT("Total Mass is: %f"), TotalMass);
 	
 	return TotalMass;
 }
