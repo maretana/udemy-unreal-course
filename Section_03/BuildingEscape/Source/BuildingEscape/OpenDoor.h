@@ -36,9 +36,9 @@ private:
 	float CloseDelayInSeconds;
 
 	UPROPERTY(EditAnywhere)
-	ATriggerVolume* PressurePlate;
+	ATriggerVolume* PressurePlate = nullptr;
 
-	AActor* Door;
+	AActor* Door = nullptr;
 
 	float CloseAngle;
 

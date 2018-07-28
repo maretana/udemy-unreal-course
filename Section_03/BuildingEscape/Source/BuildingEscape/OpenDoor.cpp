@@ -26,6 +26,11 @@ void UOpenDoor::BeginPlay()
 	Super::BeginPlay();
 	Door = GetOwner();
 	CloseAngle = Door->GetActorRotation().Yaw;
+
+	// Check for unset properties
+	if (!PressurePlate) {
+		UE_LOG(LogTemp, Error, TEXT("PressurePlate not set on %s."), *Door->GetName());
+	}
 }
 
 void UOpenDoor::OpenDoor()
@@ -60,6 +65,9 @@ float UOpenDoor::GetTotalMassOfActorsOnPLate() const
 {
 	float TotalMass = 0.f;
 
+	// Skip this if PressurePlate is not set.
+	if (!PressurePlate) { return TotalMass; }
+
 	/// Find all the overlapping actors
 	TArray<AActor*> OverlappingActors;
 	PressurePlate->GetOverlappingActors(OUT OverlappingActors);
@@ -67,14 +75,11 @@ float UOpenDoor::GetTotalMassOfActorsOnPLate() const
 	///Iterate through them adding their masses.
 	for (const auto* OverlappingActor : OverlappingActors)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("%s is overlapping"), *OverlappingActor->GetName());
 		auto PrimitiveComponent = OverlappingActor->FindComponentByClass<UPrimitiveComponent>();
 		if (PrimitiveComponent) {
 			TotalMass += PrimitiveComponent->GetMass();
 		}
 	}
-
-	UE_LOG(LogTemp, Warning, TEXT("Total Mass is: %f"), TotalMass);
 	
 	return TotalMass;
 }
