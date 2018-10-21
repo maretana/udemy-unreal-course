@@ -25,7 +25,6 @@ void UOpenDoor::BeginPlay()
 {
 	Super::BeginPlay();
 	Door = GetOwner();
-	CloseAngle = Door->GetActorRotation().Yaw;
 
 	// Check for unset properties
 	if (!PressurePlate) {
@@ -35,13 +34,13 @@ void UOpenDoor::BeginPlay()
 
 void UOpenDoor::OpenDoor()
 {
-	Door->SetActorRotation(FRotator(0.f, CloseAngle + OpenAngle, 0.f));
+	OnOpenRequest.Broadcast();
 	LastDoorOpenTime = GetWorld()->GetTimeSeconds();
 }
 
 void UOpenDoor::CloseDoor()
 {
-	Door->SetActorRotation(FRotator(0.f, CloseAngle, 0.f));
+	Door->SetActorRotation(FRotator(0.f, 0.f, 0.f));
 }
 
 
@@ -51,7 +50,7 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// Poll the Trigger Volume
-	if (GetTotalMassOfActorsOnPLate() > 10.f)
+	if (GetTotalMassOfActorsOnPlate() > 10.f)
 	{
 		OpenDoor();
 	}
@@ -61,7 +60,7 @@ void UOpenDoor::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	}
 }
 
-float UOpenDoor::GetTotalMassOfActorsOnPLate() const
+float UOpenDoor::GetTotalMassOfActorsOnPlate() const
 {
 	float TotalMass = 0.f;
 
