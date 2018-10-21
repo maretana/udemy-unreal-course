@@ -39,14 +39,9 @@ public:
 private:
 
 	UPROPERTY(EditAnywhere)
-	float CloseDelayInSeconds;
-
-	UPROPERTY(EditAnywhere)
 	ATriggerVolume* PressurePlate = nullptr;
 
 	AActor* Door = nullptr;
-
-	float LastDoorOpenTime;
 
 	UPROPERTY(EditAnywhere)
 	float TriggerMass = 10.f;
